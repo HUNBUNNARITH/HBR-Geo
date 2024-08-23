@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Map View</title>
+    <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />
+    <link rel="stylesheet" href="https://unpkg.com/leaflet-fullscreen/dist/leaflet.fullscreen.css" />
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            height: 100vh;
+            overflow: hidden;
+        }
+
+        #map {
+            height: 100vh;
+            width: 100vw;
+        }
+
+        h1 {
+            position: absolute;
+            top: 10px;
+            left: 10px;
+            background: rgba(255, 255, 255, 0.8);
+            padding: 5px;
+            margin: 0;
+            z-index: 1000; /* Ensure the heading is above the map */
+        }
+    </style>
+</head>
+
+<body>
+    <h1>Interactive Map of Kratie Province</h1>
+
+    <div id="map"></div>
+
+    <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
+    <script src="https://unpkg.com/leaflet-fullscreen/dist/leaflet.fullscreen.js"></script>
+    <script>
+        // Initialize the map and set its view to Kratie Province, Cambodia
+        var map = L.map('map', {
+            fullscreenControl: true,
+            fullscreenControlOptions: {
+                position: 'topleft' // Position of fullscreen button
+            }
+        }).setView([12.5000, 106.0000], 10);
+
+        // Add OpenStreetMap tile layer
+        L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+            attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+        }).addTo(map);
+
+        // Add a marker to the map
+        L.marker([12.5000, 106.0000]).addTo(map)
+            .bindPopup('Kratie Province, Cambodia')
+            .openPopup();
+    </script>
+</body>
+
+</html>
